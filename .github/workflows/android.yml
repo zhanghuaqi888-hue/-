@@ -1,1 +1,39 @@
+name: Build Android APK
 
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 安装 Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 安装 Capacitor
+        run: npm install @capacitor/core @capacitor/cli @capacitor/android
+
+      - name: 构建 Android
+        run: |
+          npx cap add android
+          npx cap sync
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: 上传 APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk
