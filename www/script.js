@@ -111,8 +111,9 @@ function isOutOfBounds(head) {
   return head.x < 0 || head.y < 0 || head.x >= gridSize || head.y >= gridSize;
 }
 
-function isSelfCollision(head) {
-  return snake.some((part) => part.x === head.x && part.y === head.y);
+function isSelfCollision(head, ateFood) {
+  const collisionBody = ateFood ? snake : snake.slice(0, -1);
+  return collisionBody.some((part) => part.x === head.x && part.y === head.y);
 }
 
 function stepSnake() {
@@ -122,7 +123,9 @@ function stepSnake() {
     y: snake[0].y + direction.y,
   };
 
-  if (isOutOfBounds(head) || isSelfCollision(head)) {
+  const ateFood = head.x === food.x && head.y === food.y;
+
+  if (isOutOfBounds(head) || isSelfCollision(head, ateFood)) {
     gameRunning = false;
     drawGameOver();
     const currentHigh = Number(highScoreEl.textContent);
@@ -135,7 +138,6 @@ function stepSnake() {
 
   snake.unshift(head);
 
-  const ateFood = head.x === food.x && head.y === food.y;
   if (ateFood) {
     score += 1;
     level = 1 + Math.floor(score / 5);
