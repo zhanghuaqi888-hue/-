@@ -1,79 +1,94 @@
+:root {
+  --bg: #0d1b2a;
+  --panel: #1b263b;
+  --accent: #00d4ff;
+  --snake: #66ff9c;
+  --food: #ff4d6d;
+  --grid: #274060;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #141e30, #243b55);
-    color: white;
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #1b3a57, var(--bg));
+  color: #e0f2ff;
+}
+
+.container {
+  width: min(92vw, 460px);
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(20, 34, 56, 0.88);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 h1 {
-    margin-top: 20px;
+  margin-top: 4px;
+  margin-bottom: 12px;
 }
 
-.scoreBoard {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    font-size: 18px;
+.hud {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 12px;
+  gap: 8px;
 }
 
-#game {
-    width: 400px;
-    height: 500px;
-    margin: 20px auto;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(to bottom, #1e3c72, #2a5298);
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+#board {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  background: #0f2238;
+  border: 2px solid #355475;
+  border-radius: 10px;
 }
 
-#player {
-    width: 50px;
-    height: 50px;
-    background: cyan;
-    position: absolute;
-    bottom: 10px;
-    left: 175px;
-    border-radius: 8px;
-    box-shadow: 0 0 20px cyan;
-}
-
-.enemy {
-    width: 50px;
-    height: 50px;
-    background: red;
-    position: absolute;
-    top: 0;
-    border-radius: 8px;
-    box-shadow: 0 0 15px red;
+.controls {
+  margin-top: 14px;
 }
 
 button {
-    padding: 12px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: orange;
-    color: white;
-    margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  background: var(--accent);
+  color: #072033;
+  font-weight: 700;
 }
 
 button:hover {
-    background: darkorange;
+  filter: brightness(1.06);
 }
 
-.explosion {
-    width: 50px;
-    height: 50px;
-    background: orange;
-    position: absolute;
-    border-radius: 50%;
-    animation: boom 0.5s forwards;
+.tip {
+  margin-top: 8px;
+  color: #b2d0e8;
+  font-size: 13px;
 }
 
-@keyframes boom {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(2); opacity: 0; }
+.touch-pad {
+  margin-top: 12px;
+}
 
+.touch-pad > button,
+.touch-pad div button {
+  margin: 4px;
+  min-width: 54px;
+}
+
+@media (min-width: 700px) {
+  .touch-pad {
+    display: none;
+  }
 }

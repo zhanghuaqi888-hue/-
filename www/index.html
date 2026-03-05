@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>躲避方块 Pro Max</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>像素贪吃蛇</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <main class="container">
+    <h1>🐍 像素贪吃蛇</h1>
 
-    <h1>🔥 躲避方块 Pro Max</h1>
+    <section class="hud">
+      <p>分数：<span id="score">0</span></p>
+      <p>最高分：<span id="highScore">0</span></p>
+      <p>速度：<span id="speed">1</span> 级</p>
+    </section>
 
-    <div class="scoreBoard">
-        <p>分数: <span id="score">0</span></p>
-        <p>最高分: <span id="highScore">0</span></p>
-    </div>
+    <canvas id="board" width="400" height="400" aria-label="贪吃蛇游戏画布"></canvas>
 
-    <button id="startBtn">开始游戏</button>
+    <section class="controls">
+      <button id="startBtn">开始 / 重新开始</button>
+      <p class="tip">方向键或 WASD 控制移动，手机可用屏幕方向按钮。</p>
+    </section>
 
-    <div id="game">
-        <div id="player"></div>
-    </div>
+    <section class="touch-pad" aria-label="触屏方向键">
+      <button data-dir="up">⬆️</button>
+      <div>
+        <button data-dir="left">⬅️</button>
+        <button data-dir="down">⬇️</button>
+        <button data-dir="right">➡️</button>
+      </div>
+    </section>
+  </main>
 
-    <audio id="bgm" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
